@@ -5,10 +5,22 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A72A4804-F530-4CD7-8019-4C1C5407A4CF}"
 	ProjectSection(SolutionItems) = preProject
+		ServiceModelEx.dll = ServiceModelEx.dll
+		ServiceModelEx.pdb = ServiceModelEx.pdb
 		User Management.ppt = User Management.ppt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp", "DesktopApp\DesktopApp.csproj", "{D7E63EF2-551A-403C-8792-93104F391C22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManager", "UserManager\UserManager.csproj", "{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationEngine", "AuthenticationEngine\AuthenticationEngine.csproj", "{D6863BF5-7191-4F44-8A92-2DD627AD250A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessor", "UserAccessor\UserAccessor.csproj", "{D875729D-220D-41FC-9F9C-1E184130D2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContracts", "DataContracts\DataContracts.csproj", "{E21FAD15-BF48-49B6-B22D-0BCE836B16E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserStore", "UserFileStore\UserStore.csproj", "{F3E39937-EE75-4882-A8AA-2D04E8BC195A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +32,26 @@ Global
 		{D7E63EF2-551A-403C-8792-93104F391C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E63EF2-551A-403C-8792-93104F391C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7E63EF2-551A-403C-8792-93104F391C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6863BF5-7191-4F44-8A92-2DD627AD250A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6863BF5-7191-4F44-8A92-2DD627AD250A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6863BF5-7191-4F44-8A92-2DD627AD250A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6863BF5-7191-4F44-8A92-2DD627AD250A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D875729D-220D-41FC-9F9C-1E184130D2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D875729D-220D-41FC-9F9C-1E184130D2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D875729D-220D-41FC-9F9C-1E184130D2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D875729D-220D-41FC-9F9C-1E184130D2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E21FAD15-BF48-49B6-B22D-0BCE836B16E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21FAD15-BF48-49B6-B22D-0BCE836B16E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21FAD15-BF48-49B6-B22D-0BCE836B16E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21FAD15-BF48-49B6-B22D-0BCE836B16E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContracts", "DataContra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserStore", "UserFileStore\UserStore.csproj", "{F3E39937-EE75-4882-A8AA-2D04E8BC195A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHostConsole", "ConsoleServiceHost\ServiceHostConsole.csproj", "{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3E39937-EE75-4882-A8AA-2D04E8BC195A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

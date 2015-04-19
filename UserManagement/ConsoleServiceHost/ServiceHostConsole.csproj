@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{D61787BA-8FDB-4710-9BAA-F4F18F2B64BD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserManager</RootNamespace>
-    <AssemblyName>UserManager</AssemblyName>
+    <RootNamespace>ConsoleServiceHost</RootNamespace>
+    <AssemblyName>ConsoleServiceHost</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,21 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AuthenticationEngine\AuthenticationEngine.csproj">
-      <Project>{d6863bf5-7191-4f44-8a92-2dd627ad250a}</Project>
-      <Name>AuthenticationEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataContracts\DataContracts.csproj">
-      <Project>{e21fad15-bf48-49b6-b22d-0bce836b16e4}</Project>
-      <Name>DataContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserAccessor\UserAccessor.csproj">
-      <Project>{d875729d-220d-41fc-9f9c-1e184130d2bb}</Project>
-      <Name>UserAccessor</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserManager\UserManager.csproj">
+      <Project>{1e25fdf6-0bd1-4029-bdb6-8fc71a46947d}</Project>
+      <Name>UserManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

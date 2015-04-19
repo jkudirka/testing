@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceModelEx;
 
 #region Service Contract
 
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 public interface IUserManager
 {
     [OperationContract]
-    void Login(string username, string password);
+    AuthenticationResult Login(string username, string password);
 
     [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
     void CreateUser(User user);
@@ -34,9 +35,10 @@ public interface IUserManager
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
 public class UserManager : IUserManager
 {
-    public void Login(string username, string password)
+    public AuthenticationResult Login(string username, string password)
     {
-        throw new NotImplementedException();
+        var engine = InProcFactory.CreateInstance<AuthenticationEngine, IAuthenticationEngine>();
+        return engine.Authenticate(username, password);
     }
 
     public void CreateUser(User user)

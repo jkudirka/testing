@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/UserManagement/AuthenticationEngine/bin/Debug
+/UserManagement/AuthenticationEngine/obj/Debug
+/UserManagement/ConsoleServiceHost/bin/Debug
+/UserManagement/ConsoleServiceHost/obj/Debug

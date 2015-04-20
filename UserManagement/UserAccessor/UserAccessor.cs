@@ -4,40 +4,20 @@ using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 
-#region Service Contract
-[ServiceContract]
-public interface IUserAccessor
-{
-    [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-    void CreateUser(User user);
 
-    [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-    User GetUser(string username);
-
-    [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-    void UpdateUser(User user);
-
-    [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-    void DeleteUser(User user);
-
-    [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-    User[] GetUsers(string usernameFilter = null);
-}
-#endregion
-
-[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
+//[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
 public class UserAccessor : IUserAccessor
 {
     #region Fields
 
     private static readonly string _FilePath = ConfigurationManager.AppSettings["filePath"] ?? @"C:\UserStore.dat";
-    private static object _SyncObject = new object();
+    private static readonly object _SyncObject = new object();
 
     /// <summary>
     /// Field for interacting with a file-based User Store.  
     /// The constructor loads the persisted file everytime.
     /// </summary>
-    private Lazy<UserStore> _UserStore = new Lazy<UserStore>(() =>
+    private readonly Lazy<UserStore> _UserStore = new Lazy<UserStore>(() =>
     {
         lock (_SyncObject)
         {
@@ -49,7 +29,7 @@ public class UserAccessor : IUserAccessor
 
     #region IUserAccessor Members
 
-    [OperationBehavior(TransactionScopeRequired = true)]
+    [OperationBehavior(TransactionScopeRequired = false)]
     public void CreateUser(User user)
     {
         lock (_SyncObject)
@@ -76,7 +56,7 @@ public class UserAccessor : IUserAccessor
         }
     }
 
-    [OperationBehavior(TransactionScopeRequired = true)]
+    [OperationBehavior(TransactionScopeRequired = false)]
     public void DeleteUser(User user)
     {
         lock (_SyncObject)

@@ -1,10 +1,5 @@
-﻿using ServiceModelEx;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceHostConsole
 {
@@ -12,16 +7,16 @@ namespace ServiceHostConsole
     {
         static void Main(string[] args)
         {
-            var baseAddress = DiscoveryHelper.AvailableIpcBaseAddress;
-            var host = new ServiceHost(typeof(UserManager), baseAddress);
+            //var baseAddress = DiscoveryHelper.AvailableIpcBaseAddress;
+            //var host = new ServiceHost(typeof(UserManager), baseAddress);
+            var host = new ServiceHost(typeof(UserManager));
             host.Open();
 
-            //Can do blocking calls:
-            Console.WriteLine("UserManager is ready to receive requests.");
+            Console.WriteLine("UserManager State = " + host.State.ToString());
             Console.ReadLine();
 
+            Console.WriteLine("Closing...");
             host.Close();
-
         }
     }
 }

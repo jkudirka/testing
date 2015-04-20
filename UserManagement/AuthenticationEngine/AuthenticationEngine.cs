@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 using DataContracts;
 
 
-[ServiceContract]
-public interface IAuthenticationEngine
-{
-    AuthenticationResult Authenticate(string username, string password);
-}
-
 [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
 public class AuthenticationEngine : IAuthenticationEngine
 {

@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataContracts\DataContracts.csproj">
+      <Project>{e21fad15-bf48-49b6-b22d-0bce836b16e4}</Project>
+      <Name>DataContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserManager\UserManager.csproj">
       <Project>{1e25fdf6-0bd1-4029-bdb6-8fc71a46947d}</Project>
       <Name>UserManager</Name>

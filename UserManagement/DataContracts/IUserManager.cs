@@ -15,7 +15,7 @@ namespace DataContracts
         User GetUser(string username);
 
         [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
-        void UpdateUser(User user);
+        bool UpdateUser(User user);
 
         [OperationContract, TransactionFlow(TransactionFlowOption.Allowed)]
         void DeleteUser(User user);

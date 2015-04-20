@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceModelEx;
 using System.Transactions;
+using Common;
 
 
 //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
@@ -36,12 +37,42 @@ public class UserManager : IUserManager
     }
 
     [OperationBehavior(TransactionScopeRequired = true)]
-    public void UpdateUser(User user)
+    public bool UpdateUser(User user)
     {
         using (TransactionScope scope = new TransactionScope())
         {
-            _DataAccess.Value.UpdateUser(user);
-            scope.Complete();
+            //var result = _DataAccess.Value.UpdateUser(user);
+            //scope.Complete();
+            //return result;
+
+            var existingUser = _DataAccess.Value.GetUser(user.Username);
+            if (existingUser == null)
+                return false;
+
+            // TODO: JimK - Determine if this is a requirement.
+            // (i.e. LastPasswordChangeDate or LastPassword1-3 would not be valid).
+            //
+            //existingUser.IsPasswordResetRequired = user.IsPasswordResetRequired;
+
+            // Currently the User is locked and the update is to unlock the User...clear the failed attempt count.
+            if (existingUser.IsLocked && !user.IsLocked)
+                existingUser.FailedLoginAttempts = 0;
+
+            existingUser.IsLocked = user.IsLocked;
+
+            // Check if the password is passed in and is different than the existing user so we know to update the Password.
+            var hashedPassword = Helpers.HashPassword(user.Password);
+            if (!string.IsNullOrEmpty(user.Password) && !existingUser.Password.Equals(hashedPassword))
+            {
+                existingUser.LastPassword3 = existingUser.LastPassword2;
+                existingUser.LastPassword2 = existingUser.LastPassword1;
+                existingUser.LastPassword1 = existingUser.Password;
+                existingUser.Password = hashedPassword;
+            }
+
+            _DataAccess.Value.UpdateUser(existingUser);
+            return true;
+
         }
     }
 

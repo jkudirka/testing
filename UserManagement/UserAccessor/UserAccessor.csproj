@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{f3163cad-19ea-4e68-9943-f975f784c92d}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataContracts\DataContracts.csproj">
       <Project>{e21fad15-bf48-49b6-b22d-0bce836b16e4}</Project>
       <Name>DataContracts</Name>

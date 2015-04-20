@@ -41,7 +41,7 @@ namespace DesktopApp
             if (userForm.ShowDialog() == DialogResult.OK)
             {
                 var proxy = _Factory.CreateChannel();
-                proxy.UpdateUser(userForm.User);
+                proxy.CreateUser(userForm.User);
                 (proxy as ICommunicationObject).Close();
             }
         }
@@ -89,7 +89,18 @@ namespace DesktopApp
 
         private void Login(object sender, EventArgs e)
         {
+            var loginForm = new LoginForm();
 
+            while (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                var proxy = _Factory.CreateChannel();
+                var result = proxy.Login(loginForm.Username, loginForm.Password);
+                (proxy as ICommunicationObject).Close();
+
+                MessageBox.Show(result.Reason);
+                if (result.IsSuccessful)
+                    break;
+            }
         }
         #endregion
 

@@ -18,5 +18,8 @@ namespace DataContracts
 
         [DataMember]
         public string Reason { get; set; }
+
+        [IgnoreDataMember]
+        public User User { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataContracts;
+﻿using Common;
+using DataContracts;
 using System;
 using System.Configuration;
 using System.Linq;
@@ -34,6 +35,7 @@ public class UserAccessor : IUserAccessor
     {
         lock (_SyncObject)
         {
+            user.Password = Helpers.HashPassword(user.Password);
             _UserStore.Value.AddUser(user);
         }
     }

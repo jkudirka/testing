@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E25FDF6-0BD1-4029-BDB6-8FC71A46947D}</ProjectGuid>
+    <ProjectGuid>{F3163CAD-19EA-4E68-9943-F975F784C92D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserManager</RootNamespace>
-    <AssemblyName>UserManager</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,13 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceModelEx">
-      <HintPath>..\ServiceModelEx.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,26 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserManager.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AuthenticationEngine\AuthenticationEngine.csproj">
-      <Project>{d6863bf5-7191-4f44-8a92-2dd627ad250a}</Project>
-      <Name>AuthenticationEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{f3163cad-19ea-4e68-9943-f975f784c92d}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataContracts\DataContracts.csproj">
-      <Project>{e21fad15-bf48-49b6-b22d-0bce836b16e4}</Project>
-      <Name>DataContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserAccessor\UserAccessor.csproj">
-      <Project>{d875729d-220d-41fc-9f9c-1e184130d2bb}</Project>
-      <Name>UserAccessor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

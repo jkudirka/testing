@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ServiceModelEx">
+      <HintPath>..\ServiceModelEx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -44,9 +47,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{f3163cad-19ea-4e68-9943-f975f784c92d}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataContracts\DataContracts.csproj">
       <Project>{e21fad15-bf48-49b6-b22d-0bce836b16e4}</Project>
       <Name>DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserAccessor\UserAccessor.csproj">
+      <Project>{d875729d-220d-41fc-9f9c-1e184130d2bb}</Project>
+      <Name>UserAccessor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

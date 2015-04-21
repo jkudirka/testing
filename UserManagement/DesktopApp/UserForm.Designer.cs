@@ -50,7 +50,7 @@
             this.Okay.Location = new System.Drawing.Point(208, 6);
             this.Okay.Name = "Okay";
             this.Okay.Size = new System.Drawing.Size(75, 23);
-            this.Okay.TabIndex = 0;
+            this.Okay.TabIndex = 6;
             this.Okay.Text = "OK";
             this.Okay.UseVisualStyleBackColor = true;
             this.Okay.Click += new System.EventHandler(this.Okay_Click);
@@ -61,7 +61,7 @@
             this.Cancel.Location = new System.Drawing.Point(208, 39);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 1;
+            this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             // 
@@ -106,7 +106,7 @@
             this.Username.Location = new System.Drawing.Point(68, 6);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(100, 20);
-            this.Username.TabIndex = 6;
+            this.Username.TabIndex = 0;
             // 
             // Password
             // 
@@ -114,7 +114,7 @@
             this.Password.Name = "Password";
             this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(100, 20);
-            this.Password.TabIndex = 7;
+            this.Password.TabIndex = 1;
             this.Password.UseSystemPasswordChar = true;
             // 
             // FirstName
@@ -122,14 +122,14 @@
             this.FirstName.Location = new System.Drawing.Point(68, 64);
             this.FirstName.Name = "FirstName";
             this.FirstName.Size = new System.Drawing.Size(100, 20);
-            this.FirstName.TabIndex = 8;
+            this.FirstName.TabIndex = 2;
             // 
             // LastName
             // 
             this.LastName.Location = new System.Drawing.Point(68, 90);
             this.LastName.Name = "LastName";
             this.LastName.Size = new System.Drawing.Size(100, 20);
-            this.LastName.TabIndex = 9;
+            this.LastName.TabIndex = 3;
             // 
             // IsLocked
             // 
@@ -137,7 +137,7 @@
             this.IsLocked.Location = new System.Drawing.Point(13, 116);
             this.IsLocked.Name = "IsLocked";
             this.IsLocked.Size = new System.Drawing.Size(68, 17);
-            this.IsLocked.TabIndex = 10;
+            this.IsLocked.TabIndex = 4;
             this.IsLocked.Text = "Locked?";
             this.IsLocked.UseVisualStyleBackColor = true;
             // 
@@ -173,7 +173,7 @@
             this.FailedLoginAttempts.Location = new System.Drawing.Point(117, 156);
             this.FailedLoginAttempts.Name = "FailedLoginAttempts";
             this.FailedLoginAttempts.Size = new System.Drawing.Size(51, 20);
-            this.FailedLoginAttempts.TabIndex = 15;
+            this.FailedLoginAttempts.TabIndex = 5;
             // 
             // UserForm
             // 

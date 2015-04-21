@@ -22,6 +22,15 @@ namespace DesktopApp
         #endregion
 
         #region Event Handlers
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F5)
+                RefreshUsers(this, EventArgs.Empty);
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void Exit(object sender, EventArgs e)
         {
             this.Close();
@@ -29,6 +38,9 @@ namespace DesktopApp
 
         private void RefreshUsers(object sender, EventArgs e)
         {
+            _UsersListView.Items.Clear(); // show that the ListView was cleared
+            _UsersListView.Update();
+
             var proxy = _Factory.CreateChannel();
             RefreshUserListView(proxy.GetUsers());
             (proxy as ICommunicationObject).Close();
@@ -107,8 +119,6 @@ namespace DesktopApp
         #region Private Methods
         private void RefreshUserListView(IEnumerable<User> users)
         {
-            _UsersListView.Items.Clear();
-
             foreach (var user in users)
             {
                 var item = _UsersListView.Items.Add(new ListViewItem(new string[]

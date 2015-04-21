@@ -18,7 +18,7 @@ namespace DesktopApp
         {
             InitializeComponent();
             _Factory = new ChannelFactory<IUserManager>("UserManagerService");
-        } 
+        }
         #endregion
 
         #region Event Handlers
@@ -36,7 +36,7 @@ namespace DesktopApp
 
         private void AddUser(object sender, EventArgs e)
         {
-            var userForm = new UserForm(new User());
+            var userForm = new UserForm(new User { PasswordLastChangedDate = DateTime.UtcNow.Date });
 
             if (userForm.ShowDialog() == DialogResult.OK)
             {
@@ -97,7 +97,7 @@ namespace DesktopApp
                 var result = proxy.Login(loginForm.Username, loginForm.Password);
                 (proxy as ICommunicationObject).Close();
 
-                MessageBox.Show(result.Reason);
+                MessageBox.Show(result.Reason, "Login Results", MessageBoxButtons.OK, result.IsSuccessful ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                 if (result.IsSuccessful)
                     break;
             }
@@ -118,7 +118,7 @@ namespace DesktopApp
                     user.LastName,
                     user.IsLocked.ToString(),
                     user.FailedLoginAttempts.ToString(),
-                    user.PasswordLastChangedDate.ToString()
+                    user.PasswordLastChangedDate.ToShortDateString(),
                 }));
                 item.Tag = user;
             }

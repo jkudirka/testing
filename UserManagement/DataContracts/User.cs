@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataContracts
 {
@@ -21,7 +17,7 @@ namespace DataContracts
         [DataMember]
         public bool IsLocked { get; set; }
         [DataMember]
-        public DateTime? PasswordLastChangedDate { get; set; }
+        public DateTime PasswordLastChangedDate { get; set; }
         [DataMember]
         public string LastPassword1 { get; set; }
         [DataMember]
@@ -29,6 +25,6 @@ namespace DataContracts
         [DataMember]
         public string LastPassword3 { get; set; }
         [DataMember]
-        public int? FailedLoginAttempts { get; set; }
+        public int FailedLoginAttempts { get; set; }
     }
 }

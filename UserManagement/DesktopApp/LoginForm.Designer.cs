@@ -42,7 +42,7 @@
             this.Okay.Location = new System.Drawing.Point(189, 7);
             this.Okay.Name = "Okay";
             this.Okay.Size = new System.Drawing.Size(75, 23);
-            this.Okay.TabIndex = 0;
+            this.Okay.TabIndex = 3;
             this.Okay.Text = "OK";
             this.Okay.UseVisualStyleBackColor = true;
             this.Okay.Click += new System.EventHandler(this.Okay_Click);
@@ -54,7 +54,7 @@
             this.Cancel.Location = new System.Drawing.Point(189, 36);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 1;
+            this.Cancel.TabIndex = 4;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             // 
@@ -81,14 +81,14 @@
             this._Username.Location = new System.Drawing.Point(67, 9);
             this._Username.Name = "_Username";
             this._Username.Size = new System.Drawing.Size(100, 20);
-            this._Username.TabIndex = 4;
+            this._Username.TabIndex = 1;
             // 
             // _Password
             // 
             this._Password.Location = new System.Drawing.Point(67, 38);
             this._Password.Name = "_Password";
             this._Password.Size = new System.Drawing.Size(100, 20);
-            this._Password.TabIndex = 5;
+            this._Password.TabIndex = 2;
             this._Password.UseSystemPasswordChar = true;
             // 
             // LoginForm

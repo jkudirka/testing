@@ -1,16 +1,13 @@
-﻿using DataContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common;
+using DataContracts;
 using ServiceModelEx;
+using System;
+using System.Diagnostics;
+using System.ServiceModel;
 using System.Transactions;
-using Common;
 
 
-//[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
+[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Single)]
 public class UserManager : IUserManager
 {
     #region Fields
@@ -23,67 +20,84 @@ public class UserManager : IUserManager
 
     public AuthenticationResult Login(string username, string password)
     {
+        // Allows nulls to be passed on to the Engine for validation.
+        // Debug.Assert(!string.IsNullOrEmpty(username));
+        // Debug.Assert(!string.IsNullOrEmpty(password));
+        Debug.Assert(_Engine.Value != null && _Engine.IsValueCreated);
+
         return _Engine.Value.Authenticate(username, password);
     }
 
     public void CreateUser(User user)
     {
+        Debug.Assert(user != null);
+        Debug.Assert(!string.IsNullOrEmpty(user.Password));
+
+        user.Password = Helpers.HashPassword(user.Password);
+        user.PasswordLastChangedDate = DateTime.UtcNow.Date;
         _DataAccess.Value.CreateUser(user);
     }
 
     public User GetUser(string username)
     {
-        return _DataAccess.Value.GetUser(username);
+        Debug.Assert(!string.IsNullOrEmpty(username));
+        Debug.Assert(_DataAccess.Value != null && _DataAccess.IsValueCreated);
+
+        var user = _DataAccess.Value.GetUser(username);
+        user.Password = string.Empty; // Blank out the encrypted password before returning the User.
+        return user;
     }
 
     [OperationBehavior(TransactionScopeRequired = true)]
     public bool UpdateUser(User user)
     {
-        using (TransactionScope scope = new TransactionScope())
+        Debug.Assert(user != null);
+        Debug.Assert(!string.IsNullOrEmpty(user.Username));
+        Debug.Assert(_DataAccess.Value != null && _DataAccess.IsValueCreated);
+
+        var existingUser = _DataAccess.Value.GetUser(user.Username);
+        if (existingUser == null)
+            return false;
+
+        // Currently the User is locked and the update is to unlock the User...clear the failed attempt count.
+        if (existingUser.IsLocked && !user.IsLocked)
+            existingUser.FailedLoginAttempts = 0;
+        else
+            existingUser.FailedLoginAttempts = user.FailedLoginAttempts;
+
+        existingUser.IsLocked = user.IsLocked;
+
+        // Check if the password is passed in and is different than the existing user so we know to update the Password.
+        var hashedPassword = Helpers.HashPassword(user.Password);
+        if (!string.IsNullOrEmpty(user.Password) && !existingUser.Password.Equals(hashedPassword))
         {
-            //var result = _DataAccess.Value.UpdateUser(user);
-            //scope.Complete();
-            //return result;
-
-            var existingUser = _DataAccess.Value.GetUser(user.Username);
-            if (existingUser == null)
-                return false;
-
-            // TODO: JimK - Determine if this is a requirement.
-            // (i.e. LastPasswordChangeDate or LastPassword1-3 would not be valid).
-            //
-            //existingUser.IsPasswordResetRequired = user.IsPasswordResetRequired;
-
-            // Currently the User is locked and the update is to unlock the User...clear the failed attempt count.
-            if (existingUser.IsLocked && !user.IsLocked)
-                existingUser.FailedLoginAttempts = 0;
-
-            existingUser.IsLocked = user.IsLocked;
-
-            // Check if the password is passed in and is different than the existing user so we know to update the Password.
-            var hashedPassword = Helpers.HashPassword(user.Password);
-            if (!string.IsNullOrEmpty(user.Password) && !existingUser.Password.Equals(hashedPassword))
-            {
-                existingUser.LastPassword3 = existingUser.LastPassword2;
-                existingUser.LastPassword2 = existingUser.LastPassword1;
-                existingUser.LastPassword1 = existingUser.Password;
-                existingUser.Password = hashedPassword;
-            }
-
-            _DataAccess.Value.UpdateUser(existingUser);
-            return true;
-
+            existingUser.LastPassword3 = existingUser.LastPassword2;
+            existingUser.LastPassword2 = existingUser.LastPassword1;
+            existingUser.LastPassword1 = existingUser.Password;
+            existingUser.Password = hashedPassword;
         }
+
+        _DataAccess.Value.UpdateUser(existingUser);
+        return true;
     }
 
     public void DeleteUser(User user)
     {
+        Debug.Assert(user != null);
+        Debug.Assert(_DataAccess.Value != null && _DataAccess.IsValueCreated);
+
         _DataAccess.Value.DeleteUser(user);
     }
 
     public User[] GetUsers(string usernameFilter = null)
     {
-        return _DataAccess.Value.GetUsers(usernameFilter);
+        Debug.Assert(_DataAccess.Value != null && _DataAccess.IsValueCreated);
+
+        var users = _DataAccess.Value.GetUsers(usernameFilter);
+        foreach(var user in users)
+            user.Password = string.Empty; // Blank out the encrypted password before returning the User.
+        
+        return users;
     }
 }
 

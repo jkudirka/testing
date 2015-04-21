@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace DesktopApp
 
         public UserForm(User user)
         {
+            Debug.Assert(user != null);
+
             InitializeComponent();
             this.User = user;
 
@@ -25,10 +28,8 @@ namespace DesktopApp
             FirstName.Text = user.FirstName;
             LastName.Text = user.LastName;
             IsLocked.Checked = user.IsLocked;
-            if (user.PasswordLastChangedDate.HasValue)
-                PasswordLastChanged.Text = user.PasswordLastChangedDate.Value.ToString();
-            if (user.FailedLoginAttempts.HasValue)
-                FailedLoginAttempts.Text = user.FailedLoginAttempts.Value.ToString();
+            PasswordLastChanged.Text = user.PasswordLastChangedDate.ToShortDateString();
+            FailedLoginAttempts.Text = user.FailedLoginAttempts.ToString();
         }
 
         private void Okay_Click(object sender, EventArgs e)

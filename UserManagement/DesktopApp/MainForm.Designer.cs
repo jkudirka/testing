@@ -220,6 +220,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Desktop Client";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
